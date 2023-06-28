@@ -43,14 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComputerRegistrySQLConnection.cs" />
-    <Compile Include="EnumConnectionStatus.cs" />
+    <Compile Include="Service\ComputerRegistrySQLService.cs" />
     <Compile Include="Models\ComputerModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\ServiceRecordModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\MenuInputService.cs" />
+    <Compile Include="Service\ComputerRegistryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

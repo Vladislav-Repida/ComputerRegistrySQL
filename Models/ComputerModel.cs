@@ -22,5 +22,14 @@ namespace ComputerRegistrySQL.Models
             Gpu = gpu;
             Ram = ram;
         }
+
+        public void Print()
+        {
+            Console.WriteLine($"ID компьютера: {ComputerId}");
+            Console.WriteLine($"ID сотрудника: {EmployeeId}");
+            Console.WriteLine($"CPU: {Cpu}");
+            Console.WriteLine($"GPU: {Gpu}");
+            Console.WriteLine($"RAM: {Ram}");
+        }
     }
 }

@@ -18,5 +18,12 @@ namespace ComputerRegistrySQL.Models
             FullName = fullName;
             DateBirth = dateBirth;
         }
+
+        public void Print()
+        {
+            Console.WriteLine($"ID сотрудника: {EmployeeId}");
+            Console.WriteLine($"ФИО сотрудника: {FullName}");
+            Console.WriteLine($"Дата рождения сотрудника: {DateBirth}");
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace ComputerRegistrySQL
     {
         static void Main()
         {
-            var computerRegistryMenu = new MenuInputService();
+            var computerRegistryService = new ComputerRegistryService();
         }
     }
 }

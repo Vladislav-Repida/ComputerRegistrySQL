@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace ComputerRegistrySQL.Service
 {
     
-    class MenuInputService
+    class ComputerRegistryService
     {
-        private ComputerRegistrySQLConnection connection;
+        private ComputerRegistrySQLService connection;
 
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace ComputerRegistrySQL.Service
         {
             int computerId;
             DateTime dateRepair;
-            double price;
+            decimal price;
             string description;
 
             while (true)
@@ -108,7 +108,7 @@ namespace ComputerRegistrySQL.Service
                     Console.Write("Введите дату починки: ");
                     dateRepair = InputDate(true);
                     Console.Write("Введите стоимость: ");
-                    price = Convert.ToDouble(Console.ReadLine());
+                    price = Convert.ToDecimal(Console.ReadLine());
                     Console.Write("Введите описание: ");
                     description = Console.ReadLine();
 
@@ -124,12 +124,40 @@ namespace ComputerRegistrySQL.Service
             return new ServiceRecordModel(repairId, computerId, dateRepair, price, description);
         }
 
+        void PrintEmployees(List<EmployeeModel> employees)
+        {
+            foreach (EmployeeModel employee in employees)
+            {
+                employee.Print();
+                Console.WriteLine();
+            }
+        }
+        void PrintComputers(List<ComputerModel> computers)
+        {
+            foreach (ComputerModel computer in computers)
+            {
+                computer.Print();
+                Console.WriteLine();
+            }
+        }
+        void PrintServiceRecords(List<ServiceRecordModel> serviceRecords)
+        {
+            foreach (ServiceRecordModel serviceRecord in serviceRecords)
+            {
+                serviceRecord.Print();
+                Console.WriteLine();
+            }
+        }
+
         void PrintMenu()
         {
             Console.WriteLine("Введите номер команды:");
             Console.WriteLine("1) Добавить сотрудника");
             Console.WriteLine("2) Добавить компьютер");
             Console.WriteLine("3) Добавить запись о сервисном ремонте");
+            Console.WriteLine("4) Вывести список сотрудников");
+            Console.WriteLine("5) Вывести список компьютеров");
+            Console.WriteLine("6) Вывести список записей по сервисному ремонту");
         }
 
         bool InputHandlerFromMenu(out bool exit)
@@ -150,6 +178,15 @@ namespace ComputerRegistrySQL.Service
                         return true;
                     case 3:
                         connection.AddServiceRecord(InputServiceRecord());
+                        return true;
+                    case 4:
+                        PrintEmployees(connection.GetEmployees());
+                        return true;
+                    case 5:
+                        PrintComputers(connection.GetComputers());
+                        return true;
+                    case 6:
+                        PrintServiceRecords(connection.GetServiceRecords());
                         return true;
                     default:
                         exit = true;
@@ -185,9 +222,9 @@ namespace ComputerRegistrySQL.Service
             }
         }
 
-        public MenuInputService()
+        public ComputerRegistryService()
         {
-            connection = new ComputerRegistrySQLConnection(@"Server=localhost;Database=ComputersRegistry;Trusted_Connection=True");
+            connection = new ComputerRegistrySQLService(@"Server=localhost;Database=ComputersRegistry;Trusted_Connection=True");
             InitMenu();
         }
     }
